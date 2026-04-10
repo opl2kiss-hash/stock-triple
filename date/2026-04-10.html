@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-TW"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>做多三要件 20260410</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;
+  background:#0d1117;color:#e6edf3;padding:20px;min-height:100vh}
+.hdr{background:linear-gradient(135deg,#1f2937,#111827);
+  border:1px solid #30363d;border-radius:12px;padding:24px 28px;margin-bottom:18px}
+h1{font-size:1.7rem;color:#58a6ff;margin-bottom:6px}
+.sub{color:#8b949e;font-size:.9rem;margin-bottom:4px}
+.top5{color:#8b949e;font-size:.82rem;margin-bottom:14px}
+.stats{display:flex;gap:14px;flex-wrap:wrap}
+.sb{background:#161b22;border:1px solid #30363d;border-radius:8px;
+  padding:10px 18px;min-width:110px}
+.sv{font-size:1.5rem;font-weight:700;color:#58a6ff}
+.sl{font-size:.76rem;color:#8b949e;margin-top:2px}
+.conds{background:#161b22;border:1px solid #30363d;border-radius:10px;
+  padding:12px 18px;margin-bottom:18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.ctag{background:#21262d;border:1px solid #388bfd40;border-radius:20px;
+  padding:5px 13px;font-size:.83rem;color:#79c0ff}
+.clbl{color:#8b949e;font-size:.88rem}
+.wrap{background:#161b22;border:1px solid #30363d;border-radius:12px;overflow:auto}
+table{width:100%;border-collapse:collapse;font-size:.87rem}
+thead tr{background:#1f2937;position:sticky;top:0;z-index:10}
+th{padding:11px 10px;text-align:center;color:#8b949e;font-weight:600;
+  font-size:.79rem;border-bottom:2px solid #30363d;white-space:nowrap}
+.sortable{cursor:pointer;user-select:none}
+.sortable:hover{color:#58a6ff;background:#1c2128}
+tbody tr{border-bottom:1px solid #21262d;transition:background .15s}
+tbody tr:hover{background:#1c2128}
+tbody tr:last-child{border-bottom:none}
+td{padding:10px 10px;white-space:nowrap}
+.c{text-align:center}.r{text-align:right}
+.price{font-size:.97rem;font-weight:700;color:#ff7675}
+.gap{color:#52c41a;font-weight:600}
+.grp{color:#8b949e;font-size:.8rem}
+.dt{color:#666;font-size:.78rem}
+.tr-hot{background:#1a110a}
+.tr-good{background:#0c180c}
+.slink{color:#e6edf3;text-decoration:none;border-bottom:1px solid #444;
+  transition:color .15s,border-color .15s}
+.slink:hover{color:#58a6ff;border-bottom-color:#58a6ff}
+.b-hot{display:inline-block;border-radius:20px;padding:3px 9px;font-size:.78rem;
+  font-weight:700;background:#7c2d12;color:#fb923c;border:1px solid #9a3412}
+.b-good{display:inline-block;border-radius:20px;padding:3px 9px;font-size:.78rem;
+  font-weight:700;background:#14532d;color:#4ade80;border:1px solid #166534}
+.b-watch{display:inline-block;border-radius:20px;padding:3px 9px;font-size:.78rem;
+  font-weight:700;background:#1e3a5f;color:#60a5fa;border:1px solid #1d4ed8}
+.mkt{display:inline-block;border-radius:4px;padding:2px 8px;
+  font-size:.76rem;font-weight:700}
+.mkt-listed{background:#1d3557;color:#90caf9}
+.mkt-otc{background:#1b4332;color:#6fcf97}
+.footer{margin-top:16px;text-align:center;color:#484f58;
+  font-size:.79rem;line-height:2.2}
+</style></head><body>
+
+<div class="hdr">
+  <h1>📊 「做多三要件」篩選報告</h1>
+  <div class="sub">分析日期：2026年04月10日 10:10　｜　共找到 <b style="color:#58a6ff">17</b> 檔符合條件個股</div>
+  <div class="top5">強度最高前5檔：1409新纖、1714和桐、3236千如、2002中鋼、2014中鴻</div>
+  <div class="stats">
+    <div class="sb"><div class="sv">17</div><div class="sl">三要件合格</div></div>
+    <div class="sb"><div class="sv" style="color:#fb923c">17</div><div class="sl">🔥 最強(5-6分)</div></div>
+    <div class="sb"><div class="sv" style="color:#4ade80">0</div><div class="sl">✅ 強力(4分)</div></div>
+    <div class="sb"><div class="sv" style="color:#60a5fa">0</div><div class="sl">👀 觀察(3分)</div></div>
+  </div>
+</div>
+
+<div class="conds">
+  <span class="clbl">篩選條件：</span>
+  <span class="ctag">📈 MA17 &gt; MA95 多頭排列</span>
+  <span class="ctag">📍 股價在MA17上方 ≤ 5%</span>
+  <span class="ctag">🎯 CCI(20) 偏多</span>
+  <span class="ctag">🔴 MACD(12,26,9) 紅柱+DIF&gt;0</span>
+  <span class="ctag">📊 成交量 ≥ 1,000 張</span>
+</div>
+
+<div class="wrap">
+<table>
+<thead><tr>
+  <th>#</th>
+  <th class="sortable" data-label="強度" onclick="sortTable(this)">強度 ⇅</th>
+  <th class="sortable" data-label="代號" onclick="sortTable(this)">代號 ⇅</th>
+  <th class="sortable" data-label="名稱（點擊→玩股網）" onclick="sortTable(this)">名稱（點擊→玩股網） ⇅</th>
+  <th class="sortable" data-label="市場" onclick="sortTable(this)">市場 ⇅</th>
+  <th class="sortable" data-label="產業" onclick="sortTable(this)">產業 ⇅</th>
+  <th class="sortable" data-label="收盤價" onclick="sortTable(this)">收盤價 ⇅</th>
+  <th class="sortable" data-label="MA17" onclick="sortTable(this)">MA17 ⇅</th>
+  <th class="sortable" data-label="MA95" onclick="sortTable(this)">MA95 ⇅</th>
+  <th class="sortable" data-label="距MA17" onclick="sortTable(this)">距MA17 ⇅</th>
+  <th class="sortable" data-label="成交量(張)" onclick="sortTable(this)">成交量(張) ⇅</th>
+  <th class="sortable" data-label="CCI" onclick="sortTable(this)">CCI ⇅</th>
+  <th class="sortable" data-label="CCI區間" onclick="sortTable(this)">CCI區間 ⇅</th>
+  <th class="sortable" data-label="CCI訊號" onclick="sortTable(this)">CCI訊號 ⇅</th>
+  <th class="sortable" data-label="MACD柱" onclick="sortTable(this)">MACD柱 ⇅</th>
+  <th class="sortable" data-label="資料日期" onclick="sortTable(this)">資料日期 ⇅</th>
+</tr></thead>
+<tbody>
+<tr class="tr-hot"><td class="c">1</td><td class="c" data-val="6"><span class="b-hot">🔥6分</span></td><td class="c" data-val="1409"><b>1409</b></td><td><a href="https://www.wantgoo.com/stock/1409/technical-chart" target="_blank" class="slink">新纖</a></td><td class="c"><span class="mkt mkt-listed">上市</span></td><td class="c grp">紡織纖維</td><td class="r price">16.55</td><td class="r">15.98</td><td class="r">15.40</td><td class="c gap">+3.57%</td><td class="r vol" data-val="5184">5,184</td><td class="r" style="color:#52c41a;font-weight:700">87.0</td><td class="c" style="color:#52c41a">偏多</td><td class="c">⭐穿越</td><td class="r" style="color:#ff4d4f;font-weight:700" data-val="0.0226">🔴0.0226</td><td class="c dt">2026/04/10</td></tr>
+<tr class="tr-hot"><td class="c">2</td><td class="c" data-val="6"><span class="b-hot">🔥6分</span></td><td class="c" data-val="1714"><b>1714</b></td><td><a href="https://www.wantgoo.com/stock/1714/technical-chart" target="_blank" class="slink">和桐</a></td><td class="c"><span class="mkt mkt-listed">上市</span></td><td class="c grp">化學工業</td><td class="r price">10.10</td><td class="r">9.67</td><td class="r">8.95</td><td class="c gap">+4.45%</td><td class="r vol" data-val="7516">7,516</td><td class="r" style="color:#ff7875;font-weight:700">159.5</td><td class="c" style="color:#ff7875">超買</td><td class="c">⭐穿越</td><td class="r" style="color:#ff4d4f;font-weight:700" data-val="0.0021">🔴0.0021</td><td class="c dt">2026/04/10</td></tr>
+<tr class="tr-hot"><td class="c">3</td><td class="c" data-val="5"><span class="b-hot">🔥5分</span></td><td class="c" data-val="3236"><b>3236</b></td><td><a href="https://www.wantgoo.com/stock/3236/technical-chart" target="_blank" class="slink">千如</a></td><td class="c"><span class="mkt mkt-otc">上櫃</span></td><td class="c grp">電子零組件業</td><td class="r price">31.80</td><td class="r">31.09</td><td class="r">29.81</td><td class="c gap">+2.28%</td><td class="r vol" data-val="1453">1,453</td><td class="r" style="color:#52c41a;font-weight:700">66.6</td><td class="c" style="color:#52c41a">偏多</td><td class="c">持續↑</td><td class="r" style="color:#ff4d4f;font-weight:700" data-val="0.1986">🔴0.1986</td><td class="c dt">2026/04/10</td></tr>
+<tr class="tr-hot"><td class="c">4</td><td class="c" data-val="5"><span class="b-hot">🔥5分</span></td><td class="c" data-val="2002"><b>2002</b></td><td><a href="https://www.wantgoo.com/stock/2002/technical-chart" target="_blank" class="slink">中鋼</a></td><td class="c"><span class="mkt mkt-listed">上市</span></td><td class="c grp">鋼鐵工業</td><td class="r price">20.30</td><td class="r">19.45</td><td class="r">19.23</td><td class="c gap">+4.37%</td><td class="r vol" data-val="20801">20,801</td><td class="r" style="color:#ff7875;font-weight:700">242.5</td><td class="c" style="color:#ff7875">超買</td><td class="c">持續↑</td><td class="r" style="color:#ff4d4f;font-weight:700" data-val="0.2673">🔴0.2673</td><td class="c dt">2026/04/10</td></tr>
+<tr class="tr-hot"><td class="c">5</td><td class="c" data-val="5"><span class="b-hot">🔥5分</span></td><td class="c" data-val="2014"><b>2014</b></td><td><a href="https://www.wantgoo.com/stock/2014/technical-chart" target="_blank" class="slink">中鴻</a></td><td class="c"><span class="mkt mkt-listed">上市</span></td><td class="c grp">鋼鐵工業</td><td class="r price">18.95</td><td class="r">18.47</td><td class="r">16.80</td><td class="c gap">+2.6%</td><td class="r vol" data-val="3220">3,220</td><td class="r" style="color:#ff7875;font-weight:700">107.1</td><td class="c" style="color:#ff7875">超買</td><td class="c">持續↑</td><td class="r" style="color:#ff4d4f;font-weight:700" data-val="0.0680">🔴0.0680</td><td class="c dt">2026/04/10</td></tr>
+<tr class="tr-hot"><td class="c">6</td><td class="c" data-val="5"><span class="b-hot">🔥5分</span></td><td class="c" data-val="2027"><b>2027</b></td><td><a href="https://www.wantgoo.com/stock/2027/technical-chart" target="_blank" class="slink">大成鋼</a></td><td class="c"><span class="mkt mkt-listed">上市</span></td><td class="c grp">鋼鐵工業</td><td class="r price">38.95</td><td class="r">37.46</td><td class="r">37.02</td><td class="c gap">+3.98%</td><td class="r vol" data-val="11125">11,125</td><td class="r" style="color:#ff7875;font-weight:700">154.5</td><td class="c" style="color:#ff7875">超買</td><td class="c">持續↑</td><td class="r" style="color:#ff4d4f;font-weight:700" data-val="0.4489">🔴0.4489</td><td class="c dt">2026/04/10</td></tr>
+<tr class="tr-hot"><td class="c">7</td><td class="c" data-val="5"><span class="b-hot">🔥5分</span></td><td class="c" data-val="2105"><b>2105</b></td><td><a href="https://www.wantgoo.com/stock/2105/technical-chart" target="_blank" class="slink">正新</a></td><td class="c"><span class="mkt mkt-listed">上市</span></td><td class="c grp">橡膠工業</td><td class="r price">32.10</td><td class="r">30.76</td><td class="r">30.70</td><td class="c gap">+4.36%</td><td class="r vol" data-val="2080">2,080</td><td class="r" style="color:#ff7875;font-weight:700">134.7</td><td class="c" style="color:#ff7875">超買</td><td class="c">持續↑</td><td class="r" style="color:#ff4d4f;font-weight:700" data-val="0.3763">🔴0.3763</td><td class="c dt">2026/04/10</td></tr>
+<tr class="tr-hot"><td class="c">8</td><td class="c" data-val="5"><span class="b-hot">🔥5分</span></td><td class="c" data-val="2441"><b>2441</b></td><td><a href="https://www.wantgoo.com/stock/2441/technical-chart" target="_blank" class="slink">超豐</a></td><td class="c"><span class="mkt mkt-listed">上市</span></td><td class="c grp">半導體業</td><td class="r price">94.10</td><td class="r">91.20</td><td class="r">86.40</td><td class="c gap">+3.18%</td><td class="r vol" data-val="1933">1,933</td><td class="r" style="color:#52c41a;font-weight:700">83.6</td><td class="c" style="color:#52c41a">偏多</td><td class="c">持續↑</td><td class="r" style="color:#ff4d4f;font-weight:700" data-val="0.7285">🔴0.7285</td><td class="c dt">2026/04/10</td></tr>
+<tr class="tr-hot"><td class="c">9</td><td class="c" data-val="5"><span class="b-hot">🔥5分</span></td><td class="c" data-val="2481"><b>2481</b></td><td><a href="https://www.wantgoo.com/stock/2481/technical-chart" target="_blank" class="slink">強茂</a></td><td class="c"><span class="mkt mkt-listed">上市</span></td><td class="c grp">半導體業</td><td class="r price">101.00</td><td class="r">97.40</td><td class="r">88.50</td><td class="c gap">+3.7%</td><td class="r vol" data-val="11095">11,095</td><td class="r" style="color:#52c41a;font-weight:700">78.4</td><td class="c" style="color:#52c41a">偏多</td><td class="c">持續↑</td><td class="r" style="color:#ff4d4f;font-weight:700" data-val="0.8902">🔴0.8902</td><td class="c dt">2026/04/10</td></tr>
+<tr class="tr-hot"><td class="c">10</td><td class="c" data-val="5"><span class="b-hot">🔥5分</span></td><td class="c" data-val="2801"><b>2801</b></td><td><a href="https://www.wantgoo.com/stock/2801/technical-chart" target="_blank" class="slink">彰銀</a></td><td class="c"><span class="mkt mkt-listed">上市</span></td><td class="c grp">金融保險業</td><td class="r price">21.10</td><td class="r">20.66</td><td class="r">20.56</td><td class="c gap">+2.13%</td><td class="r vol" data-val="6662">6,662</td><td class="r" style="color:#ff7875;font-weight:700">241.5</td><td class="c" style="color:#ff7875">超買</td><td class="c">持續↑</td><td class="r" style="color:#ff4d4f;font-weight:700" data-val="0.1204">🔴0.1204</td><td class="c dt">2026/04/10</td></tr>
+<tr class="tr-hot"><td class="c">11</td><td class="c" data-val="5"><span class="b-hot">🔥5分</span></td><td class="c" data-val="2880"><b>2880</b></td><td><a href="https://www.wantgoo.com/stock/2880/technical-chart" target="_blank" class="slink">華南金</a></td><td class="c"><span class="mkt mkt-listed">上市</span></td><td class="c grp">金融保險業</td><td class="r price">34.85</td><td class="r">33.66</td><td class="r">32.56</td><td class="c gap">+3.54%</td><td class="r vol" data-val="3122">3,122</td><td class="r" style="color:#ff7875;font-weight:700">193.1</td><td class="c" style="color:#ff7875">超買</td><td class="c">持續↑</td><td class="r" style="color:#ff4d4f;font-weight:700" data-val="0.2916">🔴0.2916</td><td class="c dt">2026/04/10</td></tr>
+<tr class="tr-hot"><td class="c">12</td><td class="c" data-val="5"><span class="b-hot">🔥5分</span></td><td class="c" data-val="3045"><b>3045</b></td><td><a href="https://www.wantgoo.com/stock/3045/technical-chart" target="_blank" class="slink">台灣大</a></td><td class="c"><span class="mkt mkt-listed">上市</span></td><td class="c grp">通信網路業</td><td class="r price">110.00</td><td class="r">109.41</td><td class="r">107.39</td><td class="c gap">+0.54%</td><td class="r vol" data-val="1077">1,077</td><td class="r" style="color:#52c41a;font-weight:700">98.3</td><td class="c" style="color:#52c41a">偏多</td><td class="c">持續↑</td><td class="r" style="color:#ff4d4f;font-weight:700" data-val="0.0540">🔴0.0540</td><td class="c dt">2026/04/10</td></tr>
+<tr class="tr-hot"><td class="c">13</td><td class="c" data-val="5"><span class="b-hot">🔥5分</span></td><td class="c" data-val="3138"><b>3138</b></td><td><a href="https://www.wantgoo.com/stock/3138/technical-chart" target="_blank" class="slink">耀登</a></td><td class="c"><span class="mkt mkt-listed">上市</span></td><td class="c grp">通信網路業</td><td class="r price">183.00</td><td class="r">177.03</td><td class="r">142.60</td><td class="c gap">+3.37%</td><td class="r vol" data-val="2469">2,469</td><td class="r" style="color:#52c41a;font-weight:700">58.2</td><td class="c" style="color:#52c41a">偏多</td><td class="c">持續↑</td><td class="r" style="color:#ff4d4f;font-weight:700" data-val="0.2477">🔴0.2477</td><td class="c dt">2026/04/10</td></tr>
+<tr class="tr-hot"><td class="c">14</td><td class="c" data-val="5"><span class="b-hot">🔥5分</span></td><td class="c" data-val="3413"><b>3413</b></td><td><a href="https://www.wantgoo.com/stock/3413/technical-chart" target="_blank" class="slink">京鼎</a></td><td class="c"><span class="mkt mkt-listed">上市</span></td><td class="c grp">半導體業</td><td class="r price">318.50</td><td class="r">303.62</td><td class="r">294.45</td><td class="c gap">+4.9%</td><td class="r vol" data-val="1597">1,597</td><td class="r" style="color:#ff7875;font-weight:700">160.6</td><td class="c" style="color:#ff7875">超買</td><td class="c">持續↑</td><td class="r" style="color:#ff4d4f;font-weight:700" data-val="1.0654">🔴1.0654</td><td class="c dt">2026/04/10</td></tr>
+<tr class="tr-hot"><td class="c">15</td><td class="c" data-val="5"><span class="b-hot">🔥5分</span></td><td class="c" data-val="4938"><b>4938</b></td><td><a href="https://www.wantgoo.com/stock/4938/technical-chart" target="_blank" class="slink">和碩</a></td><td class="c"><span class="mkt mkt-listed">上市</span></td><td class="c grp">電腦及週邊設備業</td><td class="r price">80.80</td><td class="r">78.30</td><td class="r">72.01</td><td class="c gap">+3.19%</td><td class="r vol" data-val="2911">2,911</td><td class="r" style="color:#ff7875;font-weight:700">127.8</td><td class="c" style="color:#ff7875">超買</td><td class="c">持續↑</td><td class="r" style="color:#ff4d4f;font-weight:700" data-val="0.0988">🔴0.0988</td><td class="c dt">2026/04/10</td></tr>
+<tr class="tr-hot"><td class="c">16</td><td class="c" data-val="5"><span class="b-hot">🔥5分</span></td><td class="c" data-val="6153"><b>6153</b></td><td><a href="https://www.wantgoo.com/stock/6153/technical-chart" target="_blank" class="slink">嘉聯益</a></td><td class="c"><span class="mkt mkt-listed">上市</span></td><td class="c grp">電子零組件業</td><td class="r price">17.35</td><td class="r">16.75</td><td class="r">15.90</td><td class="c gap">+3.58%</td><td class="r vol" data-val="1826">1,826</td><td class="r" style="color:#ff7875;font-weight:700">133.0</td><td class="c" style="color:#ff7875">超買</td><td class="c">持續↑</td><td class="r" style="color:#ff4d4f;font-weight:700" data-val="0.1393">🔴0.1393</td><td class="c dt">2026/04/10</td></tr>
+<tr class="tr-hot"><td class="c">17</td><td class="c" data-val="5"><span class="b-hot">🔥5分</span></td><td class="c" data-val="8215"><b>8215</b></td><td><a href="https://www.wantgoo.com/stock/8215/technical-chart" target="_blank" class="slink">明基材</a></td><td class="c"><span class="mkt mkt-listed">上市</span></td><td class="c grp">光電業</td><td class="r price">25.00</td><td class="r">24.04</td><td class="r">20.72</td><td class="c gap">+3.99%</td><td class="r vol" data-val="2890">2,890</td><td class="r" style="color:#ff7875;font-weight:700">118.3</td><td class="c" style="color:#ff7875">超買</td><td class="c">持續↑</td><td class="r" style="color:#ff4d4f;font-weight:700" data-val="0.0882">🔴0.0882</td><td class="c dt">2026/04/10</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="footer">
+  ⚠️ 本報告由程式自動產生，僅供學習參考，不構成任何投資建議<br>
+  股市有風險，投資需謹慎，請自行評估進出場時機<br>
+  生成時間：2026年04月10日 10:10
+</div>
+<script>
+function sortTable(th) {
+  const col = th.cellIndex;
+  const label = th.dataset.label;
+  let state = parseInt(th.dataset.state || '0');
+  state = (state === 1) ? 2 : 1;
+  document.querySelectorAll('th.sortable').forEach(h => {
+    h.dataset.state = '0';
+    h.textContent = h.dataset.label + ' ⇅';
+  });
+  th.dataset.state = state;
+  th.textContent = label + (state === 1 ? ' ▼' : ' ▲');
+  const tbody = th.closest('table').querySelector('tbody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  const desc = (state === 1);
+  rows.sort((a, b) => {
+    const ra = (a.cells[col].dataset.val !== undefined) ? a.cells[col].dataset.val : a.cells[col].textContent.trim();
+    const rb = (b.cells[col].dataset.val !== undefined) ? b.cells[col].dataset.val : b.cells[col].textContent.trim();
+    const na = parseFloat(ra), nb = parseFloat(rb);
+    let cmp = (!isNaN(na) && !isNaN(nb)) ? na - nb : ra.localeCompare(rb, 'zh-TW', {numeric: true});
+    return desc ? -cmp : cmp;
+  });
+  rows.forEach(r => tbody.appendChild(r));
+}
+</script>
+</body></html>
