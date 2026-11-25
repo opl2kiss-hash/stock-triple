@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-TW"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>做多三要件 20261125</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;
+  background:#0d1117;color:#e6edf3;padding:20px;min-height:100vh}
+.hdr{background:linear-gradient(135deg,#1f2937,#111827);
+  border:1px solid #30363d;border-radius:12px;padding:24px 28px;margin-bottom:18px}
+h1{font-size:1.7rem;color:#58a6ff;margin-bottom:6px}
+.sub{color:#8b949e;font-size:.9rem;margin-bottom:4px}
+.top5{color:#8b949e;font-size:.82rem;margin-bottom:14px}
+.stats{display:flex;gap:14px;flex-wrap:wrap}
+.sb{background:#161b22;border:1px solid #30363d;border-radius:8px;
+  padding:10px 18px;min-width:110px}
+.sv{font-size:1.5rem;font-weight:700;color:#58a6ff}
+.sl{font-size:.76rem;color:#8b949e;margin-top:2px}
+.conds{background:#161b22;border:1px solid #30363d;border-radius:10px;
+  padding:12px 18px;margin-bottom:18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.ctag{background:#21262d;border:1px solid #388bfd40;border-radius:20px;
+  padding:5px 13px;font-size:.83rem;color:#79c0ff}
+.clbl{color:#8b949e;font-size:.88rem}
+.wrap{background:#161b22;border:1px solid #30363d;border-radius:12px;overflow:auto}
+table{width:100%;border-collapse:collapse;font-size:.87rem}
+thead tr{background:#1f2937;position:sticky;top:0;z-index:10}
+th{padding:11px 10px;text-align:center;color:#8b949e;font-weight:600;
+  font-size:.79rem;border-bottom:2px solid #30363d;white-space:nowrap}
+.sortable{cursor:pointer;user-select:none}
+.kind-btns{display:inline-flex;margin:10px 0 4px;border:1px solid #30363d;border-radius:8px;overflow:hidden}
+.kind-btn{background:#161b22;color:#8b949e;border:0;padding:6px 16px;cursor:pointer;font-size:.85rem;font-weight:700}
+.kind-btn+.kind-btn{border-left:1px solid #30363d}
+.kind-btn.active{background:#1f6feb;color:#fff}
+.kind-btn b{font-weight:400;opacity:.8;margin-left:4px}
+.sortable:hover{color:#58a6ff;background:#1c2128}
+tbody tr{border-bottom:1px solid #21262d;transition:background .15s}
+tbody tr:hover{background:#1c2128}
+tbody tr:last-child{border-bottom:none}
+td{padding:10px 10px;white-space:nowrap}
+.c{text-align:center}.r{text-align:right}
+.price{font-size:.97rem;font-weight:700;color:#ff7675}
+.gap{color:#52c41a;font-weight:600}
+.grp{color:#8b949e;font-size:.8rem}
+.dt{color:#666;font-size:.78rem}
+.tr-hot{background:#1a110a}
+.tr-good{background:#0c180c}
+.slink{color:#e6edf3;text-decoration:none;border-bottom:1px solid #444;
+  transition:color .15s,border-color .15s}
+.slink:hover{color:#58a6ff;border-bottom-color:#58a6ff}
+.b-hot{display:inline-block;border-radius:20px;padding:3px 9px;font-size:.78rem;
+  font-weight:700;background:#7c2d12;color:#fb923c;border:1px solid #9a3412}
+.b-good{display:inline-block;border-radius:20px;padding:3px 9px;font-size:.78rem;
+  font-weight:700;background:#14532d;color:#4ade80;border:1px solid #166534}
+.b-watch{display:inline-block;border-radius:20px;padding:3px 9px;font-size:.78rem;
+  font-weight:700;background:#1e3a5f;color:#60a5fa;border:1px solid #1d4ed8}
+.mkt{display:inline-block;border-radius:4px;padding:2px 8px;
+  font-size:.76rem;font-weight:700}
+.mkt-listed{background:#1d3557;color:#90caf9}
+.mkt-otc{background:#1b4332;color:#6fcf97}
+.footer{margin-top:16px;text-align:center;color:#484f58;
+  font-size:.79rem;line-height:2.2}
+</style></head><body>
+
+<div class="hdr">
+  <h1>📊 「做多三要件」篩選報告</h1>
+  <div class="sub">分析日期：2026年11月25日 18:27　｜　個股 <b style="color:#58a6ff">0</b> 檔、ETF <b style="color:#58a6ff">1</b> 檔符合條件</div>
+  <div class="kind-btns">
+    <button class="kind-btn active" data-kind="個股" onclick="switchKind('個股')">個股<b>0</b></button>
+    <button class="kind-btn" data-kind="ETF" onclick="switchKind('ETF')">ETF<b>1</b></button>
+  </div>
+  <div class="top5">個股強度最高前5檔：今日無符合個股</div>
+  <div class="stats" data-kind="個股"><div class="sb"><div class="sv">0</div><div class="sl">三要件合格</div></div><div class="sb"><div class="sv" style="color:#fb923c">0</div><div class="sl">🔥 最強(5-6分)</div></div><div class="sb"><div class="sv" style="color:#4ade80">0</div><div class="sl">✅ 強力(4分)</div></div><div class="sb"><div class="sv" style="color:#60a5fa">0</div><div class="sl">👀 觀察(3分)</div></div></div><div class="stats" data-kind="ETF"><div class="sb"><div class="sv">1</div><div class="sl">三要件合格</div></div><div class="sb"><div class="sv" style="color:#fb923c">1</div><div class="sl">🔥 最強(5-6分)</div></div><div class="sb"><div class="sv" style="color:#4ade80">0</div><div class="sl">✅ 強力(4分)</div></div><div class="sb"><div class="sv" style="color:#60a5fa">0</div><div class="sl">👀 觀察(3分)</div></div></div>
+</div>
+
+<div class="conds">
+  <span class="clbl">篩選條件：</span>
+  <span class="ctag">①📈 股價 &gt; MA17 &gt; MA95（多頭結構）</span>
+  <span class="ctag">②📍 股價距MA17 ≤ 3%（位置貼近）</span>
+  <span class="ctag">③🎯 CCI近3日穿越0軸或-100（動能一）</span>
+  <span class="ctag">④🔴 MACD近3日金叉 DIF&gt;DEA（動能二）</span>
+  <span class="ctag">⑤📊 成交量≥1,000張 且 5日均量&gt;20日均量</span>
+</div>
+
+<div class="wrap">
+<table>
+<thead><tr>
+  <th>#</th>
+  <th class="sortable" data-label="強度" onclick="sortTable(this)">強度 ⇅</th>
+  <th class="sortable" data-label="代號" onclick="sortTable(this)">代號 ⇅</th>
+  <th class="sortable" data-label="名稱（點擊→玩股網）" onclick="sortTable(this)">名稱（點擊→玩股網） ⇅</th>
+  <th class="sortable" data-label="市場" onclick="sortTable(this)">市場 ⇅</th>
+  <th class="sortable" data-label="產業" onclick="sortTable(this)">產業 ⇅</th>
+  <th class="sortable" data-label="收盤價" onclick="sortTable(this)">收盤價 ⇅</th>
+  <th class="sortable" data-label="現價" onclick="sortTable(this)">現價 ⇅</th>
+  <th class="sortable" data-label="漲跌%" onclick="sortTable(this)">漲跌% ⇅</th>
+  <th class="sortable" data-label="MA17" onclick="sortTable(this)">MA17 ⇅</th>
+  <th class="sortable" data-label="MA95" onclick="sortTable(this)">MA95 ⇅</th>
+  <th class="sortable" data-label="距MA17" onclick="sortTable(this)">距MA17 ⇅</th>
+  <th class="sortable" data-label="MA17-95距離" onclick="sortTable(this)">MA17-95距離 ⇅</th>
+  <th class="sortable" data-label="成交量(張)" onclick="sortTable(this)">成交量(張) ⇅</th>
+  <th class="sortable" data-label="量比(5日)" onclick="sortTable(this)">量比(5日) ⇅</th>
+  <th class="sortable" data-label="CCI" onclick="sortTable(this)">CCI ⇅</th>
+  <th class="sortable" data-label="CCI區間" onclick="sortTable(this)">CCI區間 ⇅</th>
+  <th class="sortable" data-label="CCI訊號" onclick="sortTable(this)">CCI訊號 ⇅</th>
+  <th class="sortable" data-label="MACD柱" onclick="sortTable(this)">MACD柱 ⇅</th>
+  <th class="sortable" data-label="資料日期" onclick="sortTable(this)">資料日期 ⇅</th>
+</tr></thead>
+<tbody>
+<tr class="tr-hot" data-live-id="00969B" data-kind="ETF"><td class="c">1</td><td class="c" data-val="5"><span class="b-hot">🔥5分</span></td><td class="c" data-val="00969B"><b>00969B</b></td><td><a href="https://www.wantgoo.com/stock/00969B/technical-chart" target="_blank" class="slink">元大零息超長美債</a></td><td class="c"><span class="mkt mkt-otc">上櫃</span></td><td class="c grp">ETF·債券</td><td class="r price">8.35</td><td class="r live-price" data-val="8.35">—</td><td class="r live-pct" data-val="0">—</td><td class="r">8.20</td><td class="r">8.02</td><td class="c gap">+1.83%</td><td class="c gap">+2.24%</td><td class="r vol" data-val="1389">1,389</td><td class="r" style="color:#79c0ff;font-weight:700" data-val="0.41">0.41<br><span style="font-size:.72rem;font-weight:400;color:#79c0ff">↓縮量</span></td><td class="r" style="color:#52c41a;font-weight:700">89.7</td><td class="c" style="color:#52c41a">偏多</td><td class="c">⭐穿越0軸</td><td class="r" style="color:#ff4d4f;font-weight:700" data-val="0.0093">🔴0.0093</td><td class="c dt">2026/11/25</td></tr>
+<tr data-kind="個股"><td colspan="20" class="c" style="padding:40px;color:#8b949e">今日無符合條件的個股</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="footer">
+  ⚠️ 本報告由程式自動產生，僅供學習參考，不構成任何投資建議<br>
+  股市有風險，投資需謹慎，請自行評估進出場時機<br>
+  生成時間：2026年11月25日 18:27
+</div>
+<script>
+function switchKind(k) {
+  document.querySelectorAll('.kind-btn').forEach(b => b.classList.toggle('active', b.dataset.kind === k));
+  document.querySelectorAll('[data-kind]').forEach(el => {
+    if (el.classList.contains('kind-btn')) return;
+    el.style.display = el.dataset.kind === k ? '' : 'none';
+  });
+}
+document.addEventListener('DOMContentLoaded', () => switchKind('個股'));
+function sortTable(th) {
+  const col = th.cellIndex;
+  const label = th.dataset.label;
+  let state = parseInt(th.dataset.state || '0');
+  state = (state === 1) ? 2 : 1;
+  document.querySelectorAll('th.sortable').forEach(h => {
+    h.dataset.state = '0';
+    h.textContent = h.dataset.label + ' ⇅';
+  });
+  th.dataset.state = state;
+  th.textContent = label + (state === 1 ? ' ▼' : ' ▲');
+  const tbody = th.closest('table').querySelector('tbody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  const desc = (state === 1);
+  rows.sort((a, b) => {
+    const ra = (a.cells[col].dataset.val !== undefined) ? a.cells[col].dataset.val : a.cells[col].textContent.trim();
+    const rb = (b.cells[col].dataset.val !== undefined) ? b.cells[col].dataset.val : b.cells[col].textContent.trim();
+    const na = parseFloat(ra), nb = parseFloat(rb);
+    let cmp = (!isNaN(na) && !isNaN(nb)) ? na - nb : ra.localeCompare(rb, 'zh-TW', {numeric: true});
+    return desc ? -cmp : cmp;
+  });
+  rows.forEach(r => tbody.appendChild(r));
+}
+</script>
+<script type="application/json" id="result-data">[{"代號": "00969B", "名稱": "元大零息超長美債", "強度評分": 5, "類別": "ETF"}]</script>
+<script>
+// 即時報價：盤中每 10 秒向本機報價服務更新；連不上時保留選股日收盤價
+(function () {
+  if (location.protocol === 'file:' && location.pathname.includes('/data/')) {
+    const s = document.createElement('script');
+    s.src = 'http://127.0.0.1:8765/api/ping.js';
+    s.onload = () => location.replace('http://127.0.0.1:8765/sanjian/' + location.pathname.split('/').pop());
+    document.head.appendChild(s);
+  }
+  const items = [...document.querySelectorAll('[data-live-id]')];
+  if (!items.length) return;
+  const bar = document.createElement('div');
+  bar.style.cssText = 'position:fixed;right:12px;bottom:12px;z-index:99;padding:6px 10px;border-radius:6px;background:rgba(0,0,0,.78);color:#fff;font-size:12px';
+  document.body.appendChild(bar);
+  const inHours = () => {
+    const n = new Date(), m = n.getHours() * 60 + n.getMinutes();
+    return n.getDay() >= 1 && n.getDay() <= 5 && m >= 540 && m <= 815;
+  };
+  function applyQuote(row, price, pct) {
+    const up = pct >= 0, color = up ? '#ff4d4f' : '#52c41a';
+    const priceEl = row.querySelector('.live-price'), pctEl = row.querySelector('.live-pct');
+    priceEl.textContent = price.toFixed(2); priceEl.dataset.val = price; priceEl.style.color = color;
+    pctEl.textContent = (up ? '+' : '') + pct.toFixed(2) + '%'; pctEl.dataset.val = pct; pctEl.style.color = color;
+  }
+  async function refresh() {
+    try {
+      const ids = [...new Set(items.map(e => e.dataset.liveId))].join(',');
+      const r = await fetch('http://127.0.0.1:8765/api/quotes?stocks=' + encodeURIComponent(ids), {cache: 'no-store'});
+      const j = await r.json();
+      if (!j.ok) throw new Error(j.error || 'quote error');
+      const quotes = {};
+      (j.msgArray || []).forEach(q => { if (q && q.c) quotes[q.c] = q; });
+      let n = 0, stamp = '';
+      items.forEach(e => {
+        const q = quotes[e.dataset.liveId];
+        if (!q) return;
+        const p = parseFloat(q.z) > 0 ? parseFloat(q.z) : parseFloat(q.pz);
+        const y = parseFloat(q.y);
+        if (!(p > 0) || !(y > 0)) return;
+        applyQuote(e, p, (p - y) / y * 100);
+        n++;
+        if (q.d && q.t) { const s = q.d.slice(4, 6) + '/' + q.d.slice(6, 8) + ' ' + q.t; if (s > stamp) stamp = s; }
+      });
+      bar.textContent = '即時報價 ' + stamp + '（' + n + '/' + items.length + ' 檔）';
+    } catch (e) {
+      bar.textContent = '本機報價服務未連線，顯示選股日收盤價';
+    }
+  }
+  refresh();
+  setInterval(() => { if (inHours()) refresh(); }, 10000);
+})();
+</script>
+
+<!--SPARK--><script>(function(){var D={"00969B":[[74,69,70,58,59,66,66,63,63,63,54,48,51,50,54,59,66,66,66,67,52,25,23,15,13,11,3,1,0,20,27,28,53,60,63,58,60,70,85,78,78,86,82,88,84,100,96,94,96,81,86,68,66,61,66,74,78,88,96,97],[69,68,67,66,65,65,65,65,64,64,65,64,63,62,62,61,61,60,60,60,60,58,55,52,49,46,43,40,37,35,33,32,32,31,31,30,30,31,35,38,42,46,50,55,60,66,70,74,78,80,81,82,82,82,82,81,81,82,83,83],[90,90,89,89,88,88,88,87,87,86,86,86,85,85,84,84,84,83,83,83,83,82,81,81,80,80,79,78,77,77,76,76,75,75,75,75,74,74,74,74,74,74,74,73,73,73,73,73,73,72,72,71,71,70,69,69,69,68,68,68]]},NS="http://www.w3.org/2000/svg",bg=(getComputedStyle(document.body).backgroundColor.match(/[\d.]+/g)||[0,0,0]).map(Number),light=(bg.length<4||bg[3]>0)&&bg[0]+bg[1]+bg[2]>400;
+function svg(g){var s=document.createElementNS(NS,"svg"),W=104,H=30,n=g[0].length-1;
+s.setAttribute("width",W);s.setAttribute("height",H);s.setAttribute("viewBox","0 0 "+W+" "+H);s.setAttribute("class","mini-k");s.setAttribute("role","img");
+s.setAttribute("aria-label","近60日走勢");var t=document.createElementNS(NS,"title");t.textContent="近60日：股價（"+(light?"黑":"白")+"）、MA17（橘）、MA95（藍）";s.appendChild(t);
+[[2,"#4b8ff0"],[1,"#f0a020"],[0,light?"#1d2733":"#e5edf8"]].forEach(function(p){var l=document.createElementNS(NS,"polyline"),a=[];
+g[p[0]].forEach(function(v,j){if(v!==null)a.push((1+j/n*(W-2)).toFixed(1)+","+(H-2-v/100*(H-4)).toFixed(1))});
+l.setAttribute("points",a.join(" "));l.setAttribute("fill","none");l.setAttribute("stroke",p[1]);l.setAttribute("stroke-width","1.4");s.appendChild(l)});return s}
+function code(e){var m=/wantgoo\.com\/stock\/(?:etf\/)?([0-9A-Za-z]+)/.exec(e.getAttribute("href")||"")||/openChart\(['"]?([0-9A-Za-z]+)/.exec(e.getAttribute("onclick")||"");return m?m[1].toUpperCase():null}
+function add(){document.querySelectorAll('a[href*="wantgoo.com/stock/"],td.name-cell[onclick]').forEach(function(e){
+var c=code(e),g=c&&D[c];if(!g)return;
+var card=e.classList.contains("card-link"),box=e.tagName==="TD"?e:card?(e.querySelector(".stock-name")||e):e.parentNode;
+if(box.querySelector(".mini-k"))return;
+if(box.tagName==="TD"){box.classList.add("mini-td");if(getComputedStyle(box).position==="static")box.style.position="relative"}else if(card)box.style.whiteSpace="nowrap";
+if(box===e||card)box.appendChild(svg(g));else e.after(svg(g))})}
+var st=document.createElement("style");st.textContent=".mini-k{display:inline-block;vertical-align:middle;margin-left:10px;background:"+(light?"transparent":"#0f1a2c")+";border-radius:4px;padding:1px;box-sizing:content-box}td.mini-td{padding-right:124px!important}td.mini-td>.mini-k{position:absolute;right:8px;top:50%;transform:translateY(-50%);margin:0}";document.head.appendChild(st);
+var q=0;function later(){if(!q){q=1;requestAnimationFrame(function(){q=0;add()})}}
+add();new MutationObserver(later).observe(document.body,{childList:true,subtree:true})})();</script><!--/SPARK-->
+</body></html>
